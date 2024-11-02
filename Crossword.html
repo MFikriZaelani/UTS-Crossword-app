@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crossword</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f6f6f6;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        padding: 0;
+        margin: 0;
+      }
+
+      td {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+      }
+
+      td input {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 20pt;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        caret-color: transparent;
+        cursor: pointer;
+        margin: 2px;
+      }
+
+      td input:focus {
+        border: 2px solid #2b90d8;
+        outline: 1px solid #2b90d8;
+      }
+
+      td label {
+        position: absolute;
+        padding: 3px;
+      }
+
+      .correct {
+        background-color: green;
+      }
+
+      .wrong {
+        background-color: red;
+      }
+      .cek_jawaban {
+        font-weight: bold;
+        padding: 10px;
+        background-color: #409642;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 14pt;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        display: inline-block;
+      }
+
+      .cek_jawaban:hover {
+        background-color: #48f34b;
+        color: #282828;
+      }
+
+      .reset {
+        padding: 8px;
+        background-color: #d8372b;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        font-size: 14pt;
+      }
+
+      .reset:hover {
+        background-color: rgb(98, 13, 13);
+      }
+
+      .container {
+        display: flex;
+        gap: 30px;
+      }
+      .mendatar {
+        color: #01080d;
+      }
+      .menurun {
+        color: #409642;
+      }
+
+      .poin {
+  font-weight: bold;
+  color: #fff;
+  background-color: #497457;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+}
+
+#poin {
+  color: #48f34b;
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+    </style>
+  </head>
+  <body style="background-color: #f4f3f3">
+    <header
+      style="
+        background: linear-gradient(45deg, hsl(123, 44%, 26%), #5ad148);
+        margin: 0;
+        padding: 1% 1% 1% 2%;
+        color: #fff;
+      "
+    >
+      <nav style="display: flex; justify-content: space-between">
+        <h1>
+          <a style="text-decoration: none; color: #fff" href="index.html"
+            >Crossword</a
+          >
+        </h1>
+        <div>
+          <h3>
+            <a
+              style="
+                text-decoration: none;
+                color: #fff;
+                font-size: 14pt;
+                padding-right: 40px;
+              "
+              href="index.html"
+              >Kembali</a
+            >
+          </h3>
+        </div>
+      </nav>
+    </header>
+    <section style="margin: 3% 2%">
+      <div style="display: flex; justify-content: space-between">
+        <button class="cek_jawaban" id="cek_jawaban" >CEK JAWABAN</button>
+        <button class="reset" id="reset">Reset</button>
+    </div>
+        <p class="poin"> POIN : <span id="poin"></span></p>
+    <div class="container">
+    <table>
+      <!-- BARIS 1-->
+      <tr>
+        <td></td>
+        <td>
+          <label class="mendatar">1</label>
+          <input type="text" id="1_2" maxlength="1" />
+        </td>
+        <td><input type="text" id="1_3" maxlength="1" /></td>
+        <td>
+          <label class="menurun">4</label>
+          <input type="text" id="1_4" maxlength="1" />
+        </td>
+        <td><input type="text" id="1_5" maxlength="1" /></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <!-- BARIS 2-->
+      <tr>
+        <td>
+          <label class="mendatar">4</label>
+          <input type="text" id="2_1" maxlength="1" />
+        </td>
+        <td><input type="text" id="2_2" maxlength="1" /></td>
+        <td></td>
+        <td><input type="text" id="2_4" maxlength="1" /></td>
+        <td></td>
+        <td>
+          <label class="menurun">5</label>
+          <input type="text" id="2_6" maxlength="1" />
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <!-- BARIS 3-->
+      <tr>
+        <td></td>
+        <td><input type="text" id="3_2" maxlength="1" /></td>
+        <td></td>
+        <td>
+          <label class="mendatar">3</label>
+          <input type="text" id="3_4" maxlength="1" />
+        </td>
+        <td><input type="text" id="3_5" maxlength="1" /></td>
+        <td><input type="text" id="3_6" maxlength="1" /></td>
+        <td><input type="text" id="3_7" maxlength="1" /></td>
+        <td></td>
+      </tr>
+      <!-- BARIS 4-->
+      <tr>
+        <td>
+          <label class="mendatar">2</label>
+          <input type="text" id="4_1" maxlength="1" />
+        </td>
+        <td><input type="text" id="4_2" maxlength="1" /></td>
+        <td>
+          <label class="menurun">3</label>
+          <input type="text" id="4_3" maxlength="1" />
+        </td>
+        <td><input type="text" id="4_4" maxlength="1" /></td>
+        <td></td>
+        <td><input type="text" id="4_6" maxlength="1" /></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <!-- BARIS 5-->
+      <tr>
+        <td><input type="text" id="5_1" maxlength="1" /></td>
+        <td></td>
+        <td><input type="text" id="5_3" maxlength="1" /></td>
+        <td></td>
+        <td>
+          <label class="mendatar">5</label>
+          <input type="text"  id="5_5" maxlength="1" />
+        </td>
+        <td><input type="text" id="5_6" maxlength="1" /></td>
+        <td><input type="text" id="5_7" maxlength="1" /></td>
+        <td><input type="text" id="5_8" maxlength="1" /></td>
+      </tr>
+      <!-- BARIS 6 -->
+       <tr>
+        <td><input type="text" id="6_1" maxlength="1" /></td>
+        <td></td>
+        <td><input type="text" id="6_3" maxlength="1" /></td>
+        <td></td>
+        <td></td>
+        <td><input type="text" id="6_6" maxlength="1" /></td>
+        <td></td>
+        <td></td>
+       </tr>
+       <!-- BARIS 7 -->
+       <tr>
+        <td></td>
+        <td></td>
+        <td><input type="text" id="7_3" maxlength="1" /></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+       </tr>
+    </table>
+    <div
+          style="
+            background-color: #fff;
+            width: 50%;
+            padding: 5px 20px;
+            border: 1px solid transparent;
+            border-radius: 20px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            color: #212121;
+          "
+        >
+          <h2 class="mendatar">Mendatar</h2>
+          <ol>
+            <li>Informasi yang diolah dalam komputer.</li>
+            <!-- DATA -->
+            <li>Identitas digital yang digunakan oleh pengguna untuk mengakses APK.</li>
+            <!-- AKUN -->
+            <li>Proses mengambil data dari penyimpanan atau memori.</li>
+            <!-- READ -->
+            <li>Teknologi yang memungkinkan komputer meniru kecerdasan manusia.</li>
+            <!-- AI -->
+            <li>Bahasa pemrograman terkenal untuk aplikasi berbasis web dan mobile.</li>
+            <!-- JAVA -->
+          </ol>
+          <div class="menurun">
+          <h2>Menurun</h2>
+          <ol>
+            <li>Media penyimpanan fisik dipakai untuk menyimpan data pada komputer.</li>
+            <!-- DISK -->
+            <li>Antarmuka yang memungkinkan aplikasi berbeda untuk saling berkomunikasi dan bertukar data.</li>
+            <!-- API -->
+            <li>Orang yang menggunakan perangkat atau aplikasi komputer.</li>
+            <!-- USER -->
+            <li>Mengubah arah dalam konteks navigasi atau proses dalam sistem.</li>
+            <!-- TURN -->
+            <li>Sistem deteksi yang menggunakan gelombang radio untuk menentukan lokasi dan kecepatan objek.</li>
+            <!-- RADAR -->
+          </ol>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+    <script>
+      let poin = 0;
+        function cekSelHuruf(id, jawaban) {
+            console.log("Memeriksa ID:", id); // Debugging line
+            const inputElement = document.getElementById(id);
+            if (!inputElement) {
+                console.error(`Elemen dengan id ${id} tidak ditemukan.`);
+                return false; // Kembalikan false jika elemen tidak ditemukan
+            }
+
+            inputElement.classList.remove("correct");
+            inputElement.classList.remove("wrong");
+
+            if (inputElement.value === jawaban) {
+                inputElement.classList.add("correct");
+                return true;
+            } else {
+                inputElement.classList.add("wrong");
+                return false;
+            }
+        }
+
+        document.getElementById("cek_jawaban").onclick = function () {
+            poin = 0; // Reset poin sebelum pengecekan
+            document.getElementById("poin").textContent = poin; // Reset tampilan poin
+
+    // Mendatar
+    const soal1 = cekSelHuruf("1_2", "D") && cekSelHuruf("1_3", "A") && cekSelHuruf("1_4", "T") && cekSelHuruf("1_5", "A");
+    const soal2 = cekSelHuruf("4_1", "A") && cekSelHuruf("4_2", "K") && cekSelHuruf("4_3", "U") && cekSelHuruf("4_4", "N");
+    const soal3 = cekSelHuruf("3_4", "R") && cekSelHuruf("3_5", "E") && cekSelHuruf("3_6", "A") && cekSelHuruf("3_7", "D");
+    const soal4 = cekSelHuruf("2_1", "A") && cekSelHuruf("2_2", "I");
+    const soal5 = cekSelHuruf("5_5", "J") && cekSelHuruf("5_6", "A") && cekSelHuruf("5_7", "V") && cekSelHuruf("5_8", "A");
+
+    // Menurun
+    const soal6 = cekSelHuruf("1_2", "D") && cekSelHuruf("2_2", "I") && cekSelHuruf("3_2", "S") && cekSelHuruf("4_2", "K");
+    const soal7 = cekSelHuruf("4_1", "A") && cekSelHuruf("5_1", "P") && cekSelHuruf("6_1", "I");
+    const soal8 = cekSelHuruf("4_3", "U") && cekSelHuruf("5_3", "S") && cekSelHuruf("6_3", "E") && cekSelHuruf("7_3", "R");
+    const soal9 = cekSelHuruf("1_4", "T") && cekSelHuruf("2_4", "U") && cekSelHuruf("3_4", "R") && cekSelHuruf("4_4", "N");
+    const soal10 = cekSelHuruf("2_6", "R") && cekSelHuruf("3_6", "A") && cekSelHuruf("4_6", "D") && cekSelHuruf("5_6", "A") && cekSelHuruf("6_6", "R");
+
+    // Menambah poin
+    if (soal1) { poin += 10; console.log("Soal 1 benar"); }
+    if (soal2) { poin += 10; console.log("Soal 2 benar"); }
+    if (soal3) { poin += 10; console.log("Soal 3 benar"); }
+    if (soal4) { poin += 10; console.log("Soal 4 benar"); }
+    if (soal5) { poin += 10; console.log("Soal 5 benar"); }
+    if (soal6) { poin += 10; console.log("Soal 6 benar"); }
+    if (soal7) { poin += 10; console.log("Soal 7 benar"); }
+    if (soal8) { poin += 10; console.log("Soal 8 benar"); }
+    if (soal9) { poin += 10; console.log("Soal 9 benar"); }
+    if (soal10) { poin += 10; console.log("Soal 10 benar"); }
+
+    // Update poin di tampilan
+    document.getElementById("poin").textContent = poin;
+
+    // Jika poin penuh, tampilkan pesan selamat
+    if (poin === 100) {
+        alert("Selamat anda menamatkan game ini!");
+    }
+};
+
+// Reset tombol
+document.getElementById("reset").onclick = function () {
+    document.querySelectorAll("input").forEach((input) => {
+        input.value = "";
+        input.classList.remove("correct", "wrong");
+    });
+    poin = 0;
+    document.getElementById("poin").textContent = poin;
+};
+
+    </script>
+  </body>
+</html>
